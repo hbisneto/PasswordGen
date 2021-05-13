@@ -87,7 +87,6 @@ def App():
         print(f'> Sua {Counter}º senha é: {Password}')
     print("=" * 80)
     print()
-    print(f'PassArray: {PassArray}')
 
 def QuickApp():
     print("=" * 80)
@@ -104,7 +103,6 @@ def QuickApp():
     print(f'> Sua nova senha é: {Password}')
     print("=" * 80)
     print()
-    Menu()
 
 def Save():
     FileName = str(input("Digite o nome do arquivo: "))
