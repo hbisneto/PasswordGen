@@ -65,7 +65,6 @@ def Menu():
         QuickApp()
     elif MenuNumber == 3:
         Save()
-        #SalvarNota()
     else:
         print(">> Opção inválida")
 
