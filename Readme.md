@@ -32,3 +32,12 @@ Função cria a pasta "PasswordRepo" onde serão salvos os documentos
 >> O sistema não verifica mais se o arquivo já existe. No momento do salvamento, se o arquivo de senhas já existir, ela será substituido pelo novo arquivo salvo. [Improvement]
 >> Agora, após o termino da execução de cada módulo, o sistema executa o Menu.
 ```
+
+```
+Versão 1.1.0:
+- Implementação da biblioteca "codecs"
+- Salvamento de arquivo agora usa o encode "UTF-8"
+- Alteração da função PrepararSistema() para SystemConfig()
+- Remoção de entradas não utilizadas
+- Pequenas correções de erros
+```
