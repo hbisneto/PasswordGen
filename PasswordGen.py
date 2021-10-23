@@ -1,7 +1,8 @@
 # PasswordGen (PasswordGen)
 
-import random
+import codecs
 import os
+import random
 from datetime import date
 from string import digits
 from string import punctuation
@@ -9,14 +10,11 @@ from string import ascii_letters
 
 AnoAtual = date.today().year
 SoftwareName = "PasswordGen"
-Version = "1.0.1"
+Version = "1.1.0"
 CopyrightName = "Heitor Bisneto."
 PassArray = []
-NoteProcessor = []
 SystemLocation = os.getcwd()
 SaveFolder = SystemLocation + '/PasswordRepo/'
-Extension = ['.txt']
-
 FileName = str()
     
 print("="*80)
@@ -31,7 +29,7 @@ else:
     print("Copyright © 2021 -", AnoAtual, "|", CopyrightName, "All rights reserved.")
 print()
 
-def PrepararSistema():
+def SystemConfig():
     try:
         print("="*80)
         print(f'>> Verificação de arquivos do sistema {SoftwareName} <<')
@@ -39,21 +37,22 @@ def PrepararSistema():
         print(f'>> Verificando pasta: "{SaveFolder}"...')
         os.mkdir(SaveFolder)
         print(f'>> Pasta "{SaveFolder}" criada')
-        print()
     except OSError:
         print(f'>> Status: Pasta "{SaveFolder}" configurada!')
-        print()
+    print("="*80)
+    print()
+
+SystemConfig()
 
 
 def Menu():
-    
     print("=" * 80)
     print('>> Menu <<')
     print("=" * 80)
 
     print("| 1. App() | >> Para abrir o app: Permite criar múltiplas senhas com o mesmo número de caracteres")
     print("| 2. QuickApp() | >> Para abrir o modo rápido: Cria uma senha")
-    print("| 3. Save() | >> Para salvar senhas geradas: Salva as senhas geradas em um arquivo '.txt'")
+    print("| 3. Save() | >> Para salvar senhas geradas: Salva as senhas geradas em um arquivo '.pwd'")
     print("=" * 80)
     print(">> Nos dois primeiros módulos, o número de caracteres é escolhido pelo usuário. <<")
     print("=" * 80)
@@ -105,18 +104,17 @@ def QuickApp():
     print()
 
 def Save():
-    FileName = str(input("Digite o nome do arquivo: "))
+    FileName = str(input(">> Digite o nome do arquivo: "))
     print(">> Arquivo salvo com sucesso!")
     f = open(f'{SaveFolder}{FileName}.pwd', 'w')
     f.write(f'>> [{SoftwareName}] - Arquivo de senha\n\n')
     Count = 0
     for PassCodes in PassArray:
         Count += 1
-        f = open(f'{SaveFolder}{FileName}.pwd', 'a')
-        f.write(f'{Count} - {PassCodes}\n')
-        f.close()
+        with codecs.open(f'{SaveFolder}{FileName}.pwd', "a", "utf-8-sig") as f:
+            f.write(f'{Count} - {PassCodes}\n')
+            f.close()
     PassArray.clear()
-
-PrepararSistema() 
+    
 while True:
     Menu()
